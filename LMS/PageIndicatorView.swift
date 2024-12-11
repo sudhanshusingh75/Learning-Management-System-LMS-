@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct PageIndicatorView: View {
+    var totalDots : Int
+    var currentIndex : Int
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(spacing:8){
+            ForEach (0..<totalDots,id:\.self){ index in
+                Circle()
+                    .fill(index == currentIndex ? Color(red: 0.0, green: 0.184, blue: 0.588) : Color(.systemGray4))
+                    .frame(width:10,height:10)
+                    .animation(.easeInOut,value: currentIndex)
+            }
+        }
     }
 }
 
 #Preview {
-    PageIndicatorView()
+    PageIndicatorView(totalDots: 4, currentIndex: 0)
 }
